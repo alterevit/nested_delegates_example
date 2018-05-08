@@ -7,7 +7,7 @@ import android.view.ViewGroup
 
 class RibbonAdapter constructor() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var adapters = SparseArrayCompat<IDelegateAdapter>()
+    private var adapters = SparseArrayCompat<DelegateAdapter>()
     private var elements: ArrayList<DelegateViewType> = ArrayList()
 
     override fun getItemCount() = elements.size
@@ -21,11 +21,11 @@ class RibbonAdapter constructor() : RecyclerView.Adapter<RecyclerView.ViewHolder
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
             adapters.get(getItemViewType(position))
-                    .onBindViewHolder(holder, elements[position])
+                    .onBindViewHolder(holder as BaseDelegateAdapter.BaseViewHolder, elements[position])
 
     override fun getItemViewType(position: Int) = elements[position].viewType
 
-    fun putDelegate(viewType: Int, delegateAdapter: IDelegateAdapter) =
+    fun putDelegate(viewType: Int, delegateAdapter: DelegateAdapter) =
             adapters.put(viewType, delegateAdapter)
 
     fun add(vararg delegates: DelegateViewType) {
