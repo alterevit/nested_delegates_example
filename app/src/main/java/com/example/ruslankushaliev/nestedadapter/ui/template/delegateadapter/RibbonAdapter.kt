@@ -5,11 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 
 
-class RibbonAdapter constructor(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RibbonAdapter constructor() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var adapters = SparseArrayCompat<DelegateAdapter>()
     private var elements: ArrayList<Any> = ArrayList()
-
 
     constructor(vararg delegates: DelegateAdapter) : this() {
         delegates.forEachIndexed { i, delegate ->
